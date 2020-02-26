@@ -1,0 +1,44 @@
+
+%{
+...
+
+#include "listaSimbolos.h"
+int contCadenas=1;
+Tipo tipoId;
+
+...
+%}
+...
+%%
+program : {crearTablaS();} FUNCION ID COMIENZO declarations statement_list FIN {imprimirTablaS();liberarTablaS();...};
+
+declarations : declarations VARIABLES {tipoId=VARIABLE;} identifier_list .
+	      | declarations CONSTANTES {tipoId=CONSTANTE;} identifier_list .
+
+...
+
+asig : ID {if !(perteneceTablaS($1)) añadeEntradaVar($1,tipoId) 
+           else error("Variable ya declarada");}
+	| ID = expression  {if !(perteneceTablaS($1)) añadeEntradaVar($1,tipoId) 
+				    else error("Variable ya declarada");}
+...
+statement : ID = expression {if !(perteneceTablaS($1))
+                                error("Variable no declarada") 
+                             else if esConstante($1) 
+                                     error("Asignación a constante");...}
+...
+print_item : expression {...}
+	| STRING {añadeEntradaCadena($1,contCadenas);contCadenas++;}   
+
+read_list : ID  {if !(perteneceTablaS($1)) error("Variable no declarada") 
+			 else if esConstante($1) error("Asignación a constante");...}
+
+          | read_list , ID {if !(perteneceTablaS($3)) 
+                               error("Variable no declarada") 
+                            else if esConstante($3) 
+                                    error("Asignación a constante");...}
+...
+
+expresion : ID {if !(perteneceTablaS($1)) error("Variable no declarada");...}
+
+

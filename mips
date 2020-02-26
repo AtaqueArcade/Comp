@@ -1,0 +1,48 @@
+//while (a-3)
+//	a = a-1;
+
+inicio:
+	lw $t0,-a
+	li $t1,3
+	sub $t2,$t0,$t1
+	
+	beqz $t2, fin
+	lw $t0,-a
+	lc $t1, 1
+	sub $t2,$t0,$t1
+	sw $t2,-a
+	b inicio
+fin:
+	
+//if then
+	lw $t0,-a
+	li $t1,3
+	sub $t2,$t0,$t1
+	
+	beqz $t2, fin
+	lw $t0,-a
+	lc $t1, 1
+	sub $t2,$t0,$t1
+	sw $t2,-a
+fin:
+
+//if then else
+	lw $t0,-a
+	li $t1,3
+	sub $t2,$t0,$t1
+	
+	beqz $t2, etiq_else
+	lw $t0,-a
+	lc $t1, 1
+	sub $t2,$t0,$t1
+	sw $t2,-a
+	j fin
+
+etiq_else:
+	[cosas del else]
+
+
+fin:
+
+
+

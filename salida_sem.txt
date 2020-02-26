@@ -1,0 +1,10 @@
+Error en linea 4: a ya declarado
+Error en linea 5: a ya declarado
+Error en linea 7: x no declarado
+Error en linea 8: b es constante
+Error en linea 9: c no declarado
+Error en linea 10: b es constante
+Error en linea 11: c no declarado
+Errores lexicos: 0
+Errores sintacticos: 0
+Errores semanticos: 7
